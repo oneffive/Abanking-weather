@@ -1,0 +1,433 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    min-height: 100vh;
+    padding: 40px 20px;
+    color: #1d1d1f; 
+}
+
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.app-title {
+    text-align: center;
+    font-size: 56px;
+    font-weight: 700;
+    background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    margin-bottom: 40px;
+    letter-spacing: -1px;
+}
+
+
+.weather-form, .weather-card {
+    background: rgba(255, 255, 255, 0.65); 
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+
+.weather-form {
+    padding: 40px;
+    margin-bottom: 40px;
+}
+
+
+.search-mode-toggle {
+    display: flex;
+    background: rgba(118, 118, 128, 0.12);
+    padding: 4px;
+    border-radius: 12px;
+    border: none;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #3c3c43;
+}
+
+.mode-btn:hover {
+    color: #000;
+}
+
+.mode-btn.active {
+    background: white;
+    color: #000;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12), 0 3px 1px rgba(0, 0, 0, 0.04);
+}
+
+
+.search-section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.search-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.hint {
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    border-left: none;
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 30px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-group input {
+    width: 100%;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 0 20px;
+    font-size: 20px;
+    font-family: inherit;
+    color: #1d1d1f;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.input-group input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #007AFF; /* Apple Blue */
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.15);
+}
+
+
+.btn-submit {
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(180deg, #007AFF 0%, #0062CC 100%);
+    border: none;
+    border-radius: 16px;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+
+.btn-submit::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255,255,255,0.2), transparent);
+    pointer-events: none;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+
+.weather-result {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.weather-result:empty {
+    display: none;
+}
+
+
+.widgets-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+
+.weather-card {
+    padding: 30px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.weather-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.8);
+    z-index: 10;
+}
+
+.weather-card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #1d1d1f;
+    font-weight: 700;
+}
+
+.temperature {
+    font-size: 56px;
+    font-weight: 700;
+    color: #1d1d1f;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+
+.weather-icon {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    display: block;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); 
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.weather-card .description {
+    font-size: 18px;
+    margin: 10px 0 20px;
+    text-transform: capitalize;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+}
+
+
+.remove-widget {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 59, 48, 0.1); 
+    color: #FF3B30;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.remove-widget:hover {
+    background: #FF3B30;
+    color: white;
+    transform: rotate(90deg);
+}
+
+.weather-details {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 15px;
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: auto;
+}
+
+.weather-details p {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.widget-map {
+    width: 100%;
+    height: 250px;
+    margin-top: 20px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+}
+
+
+
+
+.error-notification {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: rgba(255, 59, 48, 0.85);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(255, 59, 48, 0.3);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.error-notification button {
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.error-notification button:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100px) scale(0.9); opacity: 0; }
+    to { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+    
+    .app-title {
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+
+    .weather-form {
+        padding: 25px 20px;
+    }
+
+    .btn-submit {
+        height: 54px;
+        font-size: 18px;
+    }
+    
+    .widgets-container {
+        grid-template-columns: 1fr; 
+    }
+    
+    .input-group label {
+        font-size: 12px;
+    }
+    
+    .input-group input {
+        height: 50px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-title {
+        font-size: 28px;
+    }
+    
+    .weather-form {
+        padding: 20px 15px;
+        border-radius: 20px;
+    }
+    
+    .temperature {
+        font-size: 48px;
+    }
+    
+    .weather-icon {
+        width: 80px;
+        height: 80px;
+    }
+}
+
